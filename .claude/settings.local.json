@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run dev:*)",
+      "WebFetch(domain:yannickgregoire.nl)",
+      "Bash(npm install:*)",
+      "WebFetch(domain:www.nudistaudio.com)",
+      "Bash(lsof:*)",
+      "Bash(ipconfig:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
