@@ -5,6 +5,9 @@ import Link from 'next/link';
 import FloatingKaomoji from '@/components/FloatingKaomoji';
 import MobileMenu from '@/components/MobileMenu';
 
+// Set to false to enable checkout, true to disable
+const COMING_SOON_MODE = true;
+
 export default function DownloadPage() {
   const [isHovering, setIsHovering] = useState(false);
 
@@ -15,6 +18,20 @@ export default function DownloadPage() {
     img1.src = '/purchase1.svg';
     img2.src = '/purchase2.svg';
   }, []);
+
+  const handlePurchaseClick = (e: React.MouseEvent) => {
+    if (COMING_SOON_MODE) {
+      e.preventDefault();
+      // Disabled until launch
+    }
+  };
+
+  const handleDemoClick = (e: React.MouseEvent) => {
+    if (COMING_SOON_MODE) {
+      e.preventDefault();
+      // Disabled until launch
+    }
+  };
 
   return (
     <>
@@ -50,26 +67,40 @@ export default function DownloadPage() {
                 <span className="price-original">$20</span>
                 <span className="price-current">$12</span>
               </div>
-              <Link
-                href="/checkout"
+              <a
+                href={COMING_SOON_MODE ? "#" : "/checkout"}
                 className="purchase-btn-main"
                 onMouseEnter={() => setIsHovering(true)}
                 onMouseLeave={() => setIsHovering(false)}
+                onClick={handlePurchaseClick}
+                style={{ cursor: COMING_SOON_MODE ? 'default' : 'pointer' }}
               >
                 <img
                   src={isHovering ? '/purchase2.svg' : '/purchase1.svg'}
                   alt="Purchase"
                   className="button-svg"
                 />
-              </Link>
+              </a>
             </div>
 
             {/* Download Section */}
             <div className="download-section-secondary">
               <p className="download-subtitle">Or try the 10-day demo</p>
               <div className="download-buttons">
-                <button className="download-btn">Mac</button>
-                <button className="download-btn">Windows</button>
+                <button
+                  className="download-btn"
+                  onClick={handleDemoClick}
+                  style={{ cursor: COMING_SOON_MODE ? 'default' : 'pointer' }}
+                >
+                  Mac
+                </button>
+                <button
+                  className="download-btn"
+                  onClick={handleDemoClick}
+                  style={{ cursor: COMING_SOON_MODE ? 'default' : 'pointer' }}
+                >
+                  Windows
+                </button>
               </div>
             </div>
 
@@ -77,7 +108,7 @@ export default function DownloadPage() {
             <div className="download-links">
               <a href="#">User Manual</a>
               <span>•</span>
-              <a href="#">Newsletter</a>
+              <a href="#">Support</a>
             </div>
           </div>
         </main>
