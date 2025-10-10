@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import FloatingKaomoji from '@/components/FloatingKaomoji';
@@ -8,7 +8,7 @@ import FloatingKaomoji from '@/components/FloatingKaomoji';
 // Force dynamic rendering since we use useSearchParams
 export const dynamic = 'force-dynamic';
 
-export default function SuccessPage() {
+function SuccessContent() {
   const searchParams = useSearchParams();
   const [serialNumber, setSerialNumber] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -178,5 +178,23 @@ export default function SuccessPage() {
         </footer>
       </div>
     </>
+  );
+}
+
+export default function SuccessPage() {
+  return (
+    <Suspense fallback={
+      <div className="download-page">
+        <main className="download-main">
+          <div className="download-container">
+            <div style={{ textAlign: 'center', padding: '20px', color: '#666' }}>
+              Loading...
+            </div>
+          </div>
+        </main>
+      </div>
+    }>
+      <SuccessContent />
+    </Suspense>
   );
 }
