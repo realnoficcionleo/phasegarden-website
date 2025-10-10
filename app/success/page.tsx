@@ -5,6 +5,9 @@ import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import FloatingKaomoji from '@/components/FloatingKaomoji';
 
+// Force dynamic rendering since we use useSearchParams
+export const dynamic = 'force-dynamic';
+
 export default function SuccessPage() {
   const searchParams = useSearchParams();
   const [serialNumber, setSerialNumber] = useState<string | null>(null);
