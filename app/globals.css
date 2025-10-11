@@ -1420,6 +1420,7 @@ a, button, .menu-item, .animated-button {
     font-size: 16px;
     line-height: 26px;
     color: #000000;
+    text-align: center;
   }
 
   .features-list .feature-item {
