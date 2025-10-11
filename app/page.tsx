@@ -130,11 +130,9 @@ export default function Home() {
 
             {/* Features List */}
             <div className="features-list">
-              <div className="feature-item">// 6 voices &lt;/]</div>
-              <div className="feature-item">// unique chorus engine&lt;/]</div>
-              <div className="feature-item">// 4 oscillators &lt;/]</div>
-              <div className="feature-item">[/&gt; dripping static&lt;/]</div>
-              <div className="feature-item">[/&gt; slime and silk &lt;/]</div>
+              <div className="feature-item">// A Constellation of Six Voices &lt;/]</div>
+              <div className="feature-item">// Granular Clouds &amp; Tape Melt &lt;/]</div>
+              <div className="feature-item">// Zero-Latency, Real-Time Mangling &lt;/]</div>
             </div>
           </div>
 
