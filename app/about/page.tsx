@@ -46,7 +46,7 @@ export default function AboutPage() {
               </p>
 
               <p className="about-text">
-                Reach me at <a href="mailto:leonardo@rnfaudio.com">leonardo@rnfaudio.com</a> if you want to test new sounds before anyone else.
+                Follow <a href="https://instagram.com/rnf_audio" target="_blank" rel="noopener noreferrer">@rnf_audio</a> if you want to test new sounds before anyone else.
               </p>
             </div>
           </div>
@@ -54,7 +54,7 @@ export default function AboutPage() {
 
         {/* Footer */}
         <footer className="about-footer">
-          <span>© RNF 2025 • <a href="https://instagram.com/rnf_audio" target="_blank" rel="noopener noreferrer">@rnf_audio</a> • <a href="mailto:leonardo@rnfaudio.com">contact</a></span>
+          <span>© RNF 2025 • <a href="https://instagram.com/rnf_audio" target="_blank" rel="noopener noreferrer">@rnf_audio</a></span>
         </footer>
       </div>
     </>

@@ -115,7 +115,7 @@ export default function DownloadPage() {
 
         {/* Footer */}
         <footer className="download-footer">
-          <span>© RNF 2025 • <a href="https://instagram.com/rnf_audio" target="_blank" rel="noopener noreferrer">@rnf_audio</a> • <a href="mailto:leonardo@rnfaudio.com">contact</a></span>
+          <span>© RNF 2025 • <a href="https://instagram.com/rnf_audio" target="_blank" rel="noopener noreferrer">@rnf_audio</a></span>
         </footer>
       </div>
     </>
