@@ -16,8 +16,8 @@ export default function FloatingKaomoji() {
       // Calculate bounds on every frame for accuracy
       const kaomojiWidth = kaomoji.offsetWidth;
       const kaomojiHeight = kaomoji.offsetHeight;
-      const maxX = window.innerWidth - kaomojiWidth;
-      const maxY = window.innerHeight - kaomojiHeight;
+      const maxX = document.documentElement.clientWidth - kaomojiWidth;
+      const maxY = document.documentElement.clientHeight - kaomojiHeight;
 
       // Update position
       posRef.current.x += velocityRef.current.x;
