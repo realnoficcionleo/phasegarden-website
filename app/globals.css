@@ -1365,7 +1365,7 @@ a, button, .menu-item, .animated-button {
   }
 
   .section-3 .ascii-title {
-    padding: 0 20px;
+    display: none;
   }
 
   .section-3 .features-list {
