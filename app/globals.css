@@ -354,8 +354,8 @@ a, button, .menu-item, .animated-button {
 }
 
 .features-list {
-  width: 424px;
-  height: 218px;
+  width: 550px;
+  height: auto;
   font-family: 'DotGothic16';
   font-weight: 400;
   font-size: 24px;
