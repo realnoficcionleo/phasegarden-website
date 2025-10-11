@@ -1203,6 +1203,7 @@ a, button, .menu-item, .animated-button {
     line-height: 28px;
     color: #ffffff;
     text-shadow: none;
+    text-align: center;
   }
 
   .hero-description mark {

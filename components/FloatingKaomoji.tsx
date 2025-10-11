@@ -1,23 +1,41 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function FloatingKaomoji() {
   const kaomojiRef = useRef<HTMLDivElement>(null);
   const posRef = useRef({ x: 100, y: 100 });
-  const velocityRef = useRef({ x: 2, y: 2 });
+  const velocityRef = useRef({ x: 1, y: 1 }); // Slowed down slightly
   const animationFrameRef = useRef<number>();
+  const [bounds, setBounds] = useState({ width: 0, height: 0 });
 
+  // Effect to set and update screen bounds
+  useEffect(() => {
+    const updateBounds = () => {
+      setBounds({
+        width: document.documentElement.clientWidth,
+        height: document.documentElement.clientHeight,
+      });
+    };
+
+    // Initial bounds
+    updateBounds();
+
+    // Update bounds on resize
+    window.addEventListener('resize', updateBounds);
+    return () => window.removeEventListener('resize', updateBounds);
+  }, []);
+
+  // Effect for animation
   useEffect(() => {
     const kaomoji = kaomojiRef.current;
-    if (!kaomoji) return;
+    if (!kaomoji || bounds.width === 0) return; // Don't animate until bounds are set
 
     const animate = () => {
-      // Calculate bounds on every frame for accuracy
       const kaomojiWidth = kaomoji.offsetWidth;
       const kaomojiHeight = kaomoji.offsetHeight;
-      const maxX = document.documentElement.clientWidth - kaomojiWidth;
-      const maxY = document.documentElement.clientHeight - kaomojiHeight;
+      const maxX = bounds.width - kaomojiWidth;
+      const maxY = bounds.height - kaomojiHeight;
 
       // Update position
       posRef.current.x += velocityRef.current.x;
@@ -39,14 +57,15 @@ export default function FloatingKaomoji() {
       animationFrameRef.current = requestAnimationFrame(animate);
     };
 
-    animate();
+    // Start animation
+    animationFrameRef.current = requestAnimationFrame(animate);
 
     return () => {
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, []);
+  }, [bounds]); // Rerun effect if bounds change
 
   return (
     <div
