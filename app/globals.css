@@ -1622,4 +1622,9 @@ a, button, .menu-item, .animated-button {
   .checkout-footer {
     font-size: 12px;
   }
+
+  /* Hide problematic kaomoji on mobile */
+  .holographic-kaomoji {
+    display: none !important;
+  }
 }
