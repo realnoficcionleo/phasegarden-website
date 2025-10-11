@@ -179,9 +179,9 @@ export default function Home() {
 
           {/* Features List */}
           <div className="features-list">
-              <div className="feature-item">// A Constellation of Six Voices &lt;/]</div>
-              <div className="feature-item">// Granular Clouds &amp; Lo-fi Grit &lt;/]</div>
-              <div className="feature-item">// Zero-Latency, Real-Time Mangling &lt;/]</div>
+              <div className="feature-item">// A Constellation of Six Voices</div>
+              <div className="feature-item">// Granular Clouds &amp; Lo-fi Grit</div>
+              <div className="feature-item">// Zero-Latency, Real-Time Mangling</div>
           </div>
 
           {/* CTA Button */}
