@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 export default function FloatingKaomoji() {
   const kaomojiRef = useRef<HTMLDivElement>(null);
@@ -8,6 +9,12 @@ export default function FloatingKaomoji() {
   const velocityRef = useRef({ x: 1, y: 1 });
   const animationFrameRef = useRef<number>();
   const [bounds, setBounds] = useState({ width: 0, height: 0 });
+  const [isMounted, setIsMounted] = useState(false);
+
+  // Set mounted state after initial render
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   // Effect to set and update screen bounds
   useEffect(() => {
@@ -17,11 +24,7 @@ export default function FloatingKaomoji() {
         height: document.documentElement.clientHeight,
       });
     };
-
-    // Initial bounds
     updateBounds();
-
-    // Update bounds on resize
     window.addEventListener('resize', updateBounds);
     return () => window.removeEventListener('resize', updateBounds);
   }, []);
@@ -29,7 +32,7 @@ export default function FloatingKaomoji() {
   // Effect for animation
   useEffect(() => {
     const kaomoji = kaomojiRef.current;
-    if (!kaomoji || bounds.width === 0) return; // Don't animate until bounds are set
+    if (!kaomoji || bounds.width === 0) return;
 
     const animate = () => {
       const kaomojiWidth = kaomoji.offsetWidth;
@@ -37,11 +40,9 @@ export default function FloatingKaomoji() {
       const maxX = bounds.width - kaomojiWidth;
       const maxY = bounds.height - kaomojiHeight;
 
-      // Update position
       posRef.current.x += velocityRef.current.x;
       posRef.current.y += velocityRef.current.y;
 
-      // Bounce off edges
       if (posRef.current.x <= 0 || posRef.current.x >= maxX) {
         velocityRef.current.x *= -1;
         posRef.current.x = Math.max(0, Math.min(maxX, posRef.current.x));
@@ -51,13 +52,10 @@ export default function FloatingKaomoji() {
         posRef.current.y = Math.max(0, Math.min(maxY, posRef.current.y));
       }
 
-      // Apply position
       kaomoji.style.transform = `translate(${posRef.current.x}px, ${posRef.current.y}px)`;
-
       animationFrameRef.current = requestAnimationFrame(animate);
     };
 
-    // Start animation
     animationFrameRef.current = requestAnimationFrame(animate);
 
     return () => {
@@ -65,14 +63,17 @@ export default function FloatingKaomoji() {
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [bounds]); // Rerun effect if bounds change
+  }, [bounds]);
 
-  return (
-    <div
-      ref={kaomojiRef}
-      className="holographic-kaomoji"
-    >
+  const kaomojiMarkup = (
+    <div ref={kaomojiRef} className="holographic-kaomoji">
       (˵ ͡° ͜ʖ ͡°˵)
     </div>
   );
+
+  if (!isMounted) {
+    return null;
+  }
+
+  return createPortal(kaomojiMarkup, document.body);
 }
