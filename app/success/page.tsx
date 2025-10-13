@@ -129,12 +129,12 @@ function SuccessContent() {
                   <p className="download-subtitle">Download PhaseGarden</p>
                   <div className="download-buttons">
                     <a
-                      href="/PhaseGarden_v1.0_macOS.dmg"
+                      href="/PhaseGarden_v1.0_Installer.pkg"
                       download
                       className="download-btn"
                       style={{ textDecoration: 'none', display: 'inline-block' }}
                     >
-                      Mac (57MB)
+                      Mac (55MB)
                     </a>
                     <button
                       className="download-btn"
@@ -154,8 +154,9 @@ function SuccessContent() {
                 }}>
                   <h3 style={{ marginTop: 0, color: '#333' }}>Quick Start</h3>
                   <ol style={{ margin: '10px 0', paddingLeft: '20px' }}>
-                    <li>Download the DMG file above</li>
-                    <li>Drag plugins to <code>/Library/Audio/Plug-Ins/</code></li>
+                    <li>Download the installer package above</li>
+                    <li>Double-click to run the installer</li>
+                    <li>Follow the installation prompts (will install AU & VST3)</li>
                     <li>Rescan plugins in your DAW</li>
                     <li>Open PhaseGarden and click "License"</li>
                     <li>Enter your serial number</li>

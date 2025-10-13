@@ -65,7 +65,7 @@ export async function POST(req: NextRequest) {
 
       // Send email with download link and serial
       const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
-      const downloadUrl = `${siteUrl}/PhaseGarden_v1.0_macOS.dmg`;
+      const downloadUrl = `${siteUrl}/PhaseGarden_v1.0_Installer.pkg`;
 
       await resend.emails.send({
         from: 'PhaseGarden <orders@rnfaudio.space>',
@@ -106,10 +106,11 @@ export async function POST(req: NextRequest) {
   <p>Download: <a href="${downloadUrl}">${downloadUrl}</a></p>
 
   <p>Installation:</p>
-  <p>1. Download the DMG file</p>
-  <p>2. Drag plugins to /Library/Audio/Plug-Ins/</p>
-  <p>3. Rescan plugins in your DAW</p>
-  <p>4. Open PhaseGarden and enter your serial number</p>
+  <p>1. Download the installer package</p>
+  <p>2. Double-click to run the installer</p>
+  <p>3. Follow the installation prompts</p>
+  <p>4. Rescan plugins in your DAW</p>
+  <p>5. Open PhaseGarden and enter your serial number</p>
 
   <p>Your serial works on all your computers.</p>
   <p>Keep this email safe.</p>
