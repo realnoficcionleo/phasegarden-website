@@ -58,7 +58,7 @@ export default function DownloadPage() {
 
             {/* Info line */}
             <p className="download-info-line">
-              VST3 • AU • AAX • macOS 10.13+ • Windows 10+
+              VST3 • AU • macOS 10.13+
             </p>
 
             {/* Main CTA - Purchase */}
@@ -97,9 +97,9 @@ export default function DownloadPage() {
                 <button
                   className="download-btn"
                   onClick={handleDemoClick}
-                  style={{ cursor: COMING_SOON_MODE ? 'default' : 'pointer' }}
+                  style={{ cursor: COMING_SOON_MODE ? 'default' : 'pointer', opacity: 0.5 }}
                 >
-                  Windows
+                  Windows (soon)
                 </button>
               </div>
             </div>
