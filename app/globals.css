@@ -1082,6 +1082,46 @@ a, button, .menu-item, .animated-button {
   opacity: 1;
 }
 
+/* Responsive adjustments - Smaller Laptops (MacBook Air, etc.) */
+@media (min-width: 769px) and (max-width: 1400px) {
+  /* Reduce waterfall container width to prevent overlap */
+  .stacked-images-container {
+    width: 600px;
+    right: -20px;
+  }
+
+  /* Adjust hero content position for smaller screens */
+  .hero-content {
+    left: 100px;
+    width: 380px;
+  }
+
+  .hero-description {
+    width: 380px;
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  /* Adjust title container */
+  .hero-title-container {
+    width: 700px;
+    left: 180px;
+  }
+
+  /* Adjust logo and nav for smaller screens */
+  .logo {
+    left: 50px;
+  }
+
+  .landing-nav {
+    right: 80px;
+  }
+
+  .landing-stars {
+    left: 50px;
+  }
+}
+
 /* Responsive adjustments - Mobile */
 @media (max-width: 768px) {
   /* Global */
