@@ -121,7 +121,7 @@ export default function Home() {
             {/* Video */}
             <div className="video-container">
               <iframe
-                src="https://www.youtube.com/embed/gWleJjUrYIU"
+                src="https://www.youtube.com/embed/JnkgxE4DKBY"
                 title="PhaseGarden Demo"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
@@ -170,7 +170,7 @@ export default function Home() {
           {/* Video */}
           <div className="video-container">
             <iframe
-              src="https://www.youtube.com/embed/gWleJjUrYIU"
+              src="https://www.youtube.com/embed/JnkgxE4DKBY"
               title="PhaseGarden Demo"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
