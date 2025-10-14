@@ -1085,63 +1085,63 @@ a, button, .menu-item, .animated-button {
 /* Responsive adjustments - Granular breakpoints */
 /* Base design is optimized for 1440px (MacBook Pro 13" M1 2020) */
 
-/* Small Laptops: 1024-1279px (~75% scale) */
+/* Small Laptops: 1024-1279px - More aggressive for MacBook Air */
 @media (min-width: 769px) and (max-width: 1279px) {
   .stacked-images-container {
-    width: 650px;
-    right: -20px;
+    width: 520px;
+    right: 0px;
   }
 
   .hero-content {
-    left: 100px;
-    width: 360px;
+    left: 80px;
+    width: 340px;
   }
 
   .hero-description {
-    width: 360px;
-    font-size: 20px;
-    line-height: 30px;
+    width: 340px;
+    font-size: 18px;
+    line-height: 28px;
   }
 
   .hero-title-container {
-    width: 700px;
-    left: 170px;
+    width: 650px;
+    left: 150px;
   }
 
   .logo {
-    left: 50px;
+    left: 40px;
   }
 
   .landing-nav {
-    right: 80px;
+    right: 60px;
   }
 
   .landing-stars {
-    left: 50px;
+    left: 40px;
   }
 }
 
-/* Medium Laptops: 1280-1439px (~90% scale) */
+/* Medium Laptops: 1280-1439px - MacBook Air M2 range */
 @media (min-width: 1280px) and (max-width: 1439px) {
   .stacked-images-container {
-    width: 800px;
-    right: -30px;
+    width: 680px;
+    right: -10px;
   }
 
   .hero-content {
-    left: 140px;
-    width: 400px;
+    left: 120px;
+    width: 380px;
   }
 
   .hero-description {
-    width: 400px;
-    font-size: 22px;
-    line-height: 32px;
+    width: 380px;
+    font-size: 21px;
+    line-height: 31px;
   }
 
   .hero-title-container {
-    width: 800px;
-    left: 200px;
+    width: 750px;
+    left: 180px;
   }
 
   .logo {
@@ -1149,7 +1149,7 @@ a, button, .menu-item, .animated-button {
   }
 
   .landing-nav {
-    right: 100px;
+    right: 90px;
   }
 
   .landing-stars {
