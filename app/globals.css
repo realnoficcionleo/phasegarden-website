@@ -1082,33 +1082,32 @@ a, button, .menu-item, .animated-button {
   opacity: 1;
 }
 
-/* Responsive adjustments - Smaller Laptops (MacBook Air, etc.) */
-@media (min-width: 769px) and (max-width: 1400px) {
-  /* Reduce waterfall container width to prevent overlap */
+/* Responsive adjustments - Granular breakpoints */
+/* Base design is optimized for 1440px (MacBook Pro 13" M1 2020) */
+
+/* Small Laptops: 1024-1279px (~75% scale) */
+@media (min-width: 769px) and (max-width: 1279px) {
   .stacked-images-container {
-    width: 600px;
+    width: 650px;
     right: -20px;
   }
 
-  /* Adjust hero content position for smaller screens */
   .hero-content {
     left: 100px;
-    width: 380px;
+    width: 360px;
   }
 
   .hero-description {
-    width: 380px;
+    width: 360px;
     font-size: 20px;
     line-height: 30px;
   }
 
-  /* Adjust title container */
   .hero-title-container {
     width: 700px;
-    left: 180px;
+    left: 170px;
   }
 
-  /* Adjust logo and nav for smaller screens */
   .logo {
     left: 50px;
   }
@@ -1119,6 +1118,51 @@ a, button, .menu-item, .animated-button {
 
   .landing-stars {
     left: 50px;
+  }
+}
+
+/* Medium Laptops: 1280-1439px (~90% scale) */
+@media (min-width: 1280px) and (max-width: 1439px) {
+  .stacked-images-container {
+    width: 800px;
+    right: -30px;
+  }
+
+  .hero-content {
+    left: 140px;
+    width: 400px;
+  }
+
+  .hero-description {
+    width: 400px;
+    font-size: 22px;
+    line-height: 32px;
+  }
+
+  .hero-title-container {
+    width: 800px;
+    left: 200px;
+  }
+
+  .logo {
+    left: 60px;
+  }
+
+  .landing-nav {
+    right: 100px;
+  }
+
+  .landing-stars {
+    left: 60px;
+  }
+}
+
+/* Large screens: 1600px+ (prevent spreading, keep centered) */
+@media (min-width: 1600px) {
+  .site-wrapper {
+    max-width: 1600px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
