@@ -1121,7 +1121,7 @@ a, button, .menu-item, .animated-button {
   }
 }
 
-/* Medium Laptops: 1280-1439px - MacBook Air M2 range */
+/* Medium Laptops: 1280-1439px */
 @media (min-width: 1280px) and (max-width: 1439px) {
   .stacked-images-container {
     width: 680px;
@@ -1157,13 +1157,45 @@ a, button, .menu-item, .animated-button {
   }
 }
 
-/* Large screens: 1600px+ (prevent spreading, keep centered) */
-@media (min-width: 1600px) {
-  .site-wrapper {
-    max-width: 1600px;
-    margin-left: auto;
-    margin-right: auto;
+/* MacBook Air M2 range: 1440-1599px (viewport ~1470px) */
+@media (min-width: 1440px) and (max-width: 1599px) {
+  .stacked-images-container {
+    width: 750px;
+    right: -25px;
   }
+
+  .hero-content {
+    left: 150px;
+    width: 410px;
+  }
+
+  .hero-description {
+    width: 410px;
+    font-size: 22px;
+    line-height: 33px;
+  }
+
+  .hero-title-container {
+    width: 820px;
+    left: 220px;
+  }
+
+  .logo {
+    left: 70px;
+  }
+
+  .landing-nav {
+    right: 105px;
+  }
+
+  .landing-stars {
+    left: 70px;
+  }
+}
+
+/* MacBook Pro M1 and larger: 1600px+ (your preferred design) */
+@media (min-width: 1600px) {
+  /* Keep original design - no changes */
 }
 
 /* Responsive adjustments - Mobile */
