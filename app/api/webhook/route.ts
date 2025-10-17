@@ -117,7 +117,7 @@ export async function POST(req: NextRequest) {
 
   <p>— RNF Audio</p>
   <p>https://rnfaudio.space</p>
-  <p>@rnf_audio</p>
+  <p>@rnfaudio</p>
 </body>
 </html>
         `,

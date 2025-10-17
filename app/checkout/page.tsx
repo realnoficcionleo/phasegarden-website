@@ -139,7 +139,7 @@ export default function CheckoutPage() {
 
         {/* Footer */}
         <footer className="checkout-footer">
-          <span>© RNF 2025 • <a href="https://instagram.com/rnf_audio" target="_blank" rel="noopener noreferrer">@rnf_audio</a></span>
+          <span>© RNF 2025 • <a href="https://instagram.com/rnfaudio" target="_blank" rel="noopener noreferrer">@rnfaudio</a></span>
         </footer>
       </div>
     </>

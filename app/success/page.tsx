@@ -169,13 +169,13 @@ function SuccessContent() {
             <div className="download-links">
               <a href="mailto:support@rnfaudio.space">Support</a>
               <span>•</span>
-              <a href="https://instagram.com/rnf_audio" target="_blank" rel="noopener noreferrer">@rnf_audio</a>
+              <a href="https://instagram.com/rnfaudio" target="_blank" rel="noopener noreferrer">@rnfaudio</a>
             </div>
           </div>
         </main>
 
         <footer className="download-footer">
-          <span>© RNF 2025 • <a href="https://instagram.com/rnf_audio" target="_blank" rel="noopener noreferrer">@rnf_audio</a></span>
+          <span>© RNF 2025 • <a href="https://instagram.com/rnfaudio" target="_blank" rel="noopener noreferrer">@rnfaudio</a></span>
         </footer>
       </div>
     </>
