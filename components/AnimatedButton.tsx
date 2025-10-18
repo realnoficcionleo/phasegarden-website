@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 
 // Set to false to enable checkout, true to disable
-const COMING_SOON_MODE = true;
+const COMING_SOON_MODE = false;
 
 export default function AnimatedButton() {
   const [isHovering, setIsHovering] = useState(false);
