@@ -6,7 +6,7 @@ import FloatingKaomoji from '@/components/FloatingKaomoji';
 import MobileMenu from '@/components/MobileMenu';
 
 // Set to false to enable checkout, true to disable
-const COMING_SOON_MODE = true;
+const COMING_SOON_MODE = false;
 
 export default function DownloadPage() {
   const [isHovering, setIsHovering] = useState(false);
