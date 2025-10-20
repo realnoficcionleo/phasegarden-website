@@ -6,7 +6,11 @@
       "Bash(npm install:*)",
       "WebFetch(domain:www.nudistaudio.com)",
       "Bash(lsof:*)",
-      "Bash(ipconfig:*)"
+      "Bash(ipconfig:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Read(//Users/leonardo/ChaosChorus/**)"
     ],
     "deny": [],
     "ask": []
