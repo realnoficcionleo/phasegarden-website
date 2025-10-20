@@ -12,6 +12,7 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
 export default function CheckoutPage() {
   const [email, setEmail] = useState('');
   const [newsletter, setNewsletter] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState<'stripe' | 'mercadopago'>('mercadopago');
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [showPayment, setShowPayment] = useState(false);
 
@@ -19,24 +20,45 @@ export default function CheckoutPage() {
     if (!email) return;
 
     try {
-      // Create PaymentIntent
-      const response = await fetch('/api/create-payment-intent', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email }),
-      });
+      if (paymentMethod === 'stripe') {
+        // Create Stripe PaymentIntent
+        const response = await fetch('/api/create-payment-intent', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email }),
+        });
 
-      const { clientSecret, error } = await response.json();
+        const { clientSecret, error } = await response.json();
 
-      if (error) {
-        alert('Error: ' + error);
-        return;
+        if (error) {
+          alert('Error: ' + error);
+          return;
+        }
+
+        setClientSecret(clientSecret);
+        setShowPayment(true);
+      } else {
+        // Mercado Pago: Create preference and redirect
+        const response = await fetch('/api/mercadopago/create-preference', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, newsletter }),
+        });
+
+        const { init_point, error } = await response.json();
+
+        if (error) {
+          alert('Error: ' + error);
+          return;
+        }
+
+        // Redirect to Mercado Pago checkout
+        window.location.href = init_point;
       }
-
-      setClientSecret(clientSecret);
-      setShowPayment(true);
     } catch (err) {
       alert('An error occurred. Please try again.');
     }
@@ -76,15 +98,15 @@ export default function CheckoutPage() {
               <div className="cart-pricing">
                 <div className="price-line">
                   <span>Original Price:</span>
-                  <span>$20</span>
+                  <span>{paymentMethod === 'mercadopago' ? 'R$115' : '$20'}</span>
                 </div>
                 <div className="price-line discount">
                   <span>Launch Discount:</span>
-                  <span>-$8</span>
+                  <span>{paymentMethod === 'mercadopago' ? '-R$45' : '-$8'}</span>
                 </div>
                 <div className="price-line total">
                   <span>Total:</span>
-                  <span>$12.00</span>
+                  <span>{paymentMethod === 'mercadopago' ? 'R$70.00' : '$12.00'}</span>
                 </div>
               </div>
             </div>
@@ -92,6 +114,33 @@ export default function CheckoutPage() {
             {!showPayment ? (
               /* Email Input */
               <div className="checkout-form">
+                {/* Payment Method Selector */}
+                <div className="payment-method-selector">
+                  <label className="payment-method-label">Payment Method:</label>
+                  <div className="payment-methods">
+                    <label className="payment-method-option">
+                      <input
+                        type="radio"
+                        name="paymentMethod"
+                        value="mercadopago"
+                        checked={paymentMethod === 'mercadopago'}
+                        onChange={() => setPaymentMethod('mercadopago')}
+                      />
+                      <span>🇧🇷 Mercado Pago (PIX, Cartão, Boleto)</span>
+                    </label>
+                    <label className="payment-method-option">
+                      <input
+                        type="radio"
+                        name="paymentMethod"
+                        value="stripe"
+                        checked={paymentMethod === 'stripe'}
+                        onChange={() => setPaymentMethod('stripe')}
+                      />
+                      <span>🌎 International (Card, PayPal)</span>
+                    </label>
+                  </div>
+                </div>
+
                 <label htmlFor="email" className="email-label">
                   Email
                   <span className="email-note">Double-check for serial number delivery</span>
@@ -125,7 +174,7 @@ export default function CheckoutPage() {
                 </button>
               </div>
             ) : (
-              /* Payment Form */
+              /* Payment Form - Only for Stripe */
               <div className="checkout-form">
                 {clientSecret && (
                   <Elements stripe={stripePromise} options={{ clientSecret }}>

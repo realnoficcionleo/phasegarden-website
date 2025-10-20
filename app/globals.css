@@ -918,6 +918,50 @@ a, button, .menu-item, .animated-button {
   cursor: not-allowed;
 }
 
+.payment-method-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.payment-method-label {
+  font-size: 16px;
+  font-weight: normal;
+  text-align: center;
+}
+
+.payment-methods {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.payment-method-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px;
+  border: 2px solid #000000;
+  background: #ffffff;
+  cursor: url('/HAND-small.png') 20 5, pointer;
+  transition: all 0.3s;
+  font-size: 15px;
+}
+
+.payment-method-option:hover {
+  background: #f5f5f5;
+}
+
+.payment-method-option input[type="radio"] {
+  cursor: url('/HAND-small.png') 20 5, pointer;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
 .payment-form {
   display: flex;
   flex-direction: column;
@@ -1743,4 +1787,26 @@ a, button, .menu-item, .animated-button {
   .holographic-kaomoji {
     display: none !important;
   }
+}
+
+
+/* Mercado Pago Payment Component */
+.mercadopago-payment {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.processing-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 20px;
+  z-index: 9999;
 }
