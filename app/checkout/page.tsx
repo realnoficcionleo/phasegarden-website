@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import PaymentForm from '@/components/PaymentForm';
+import MercadoPagoCheckout from '@/components/MercadoPagoCheckout';
 import MobileMenu from '@/components/MobileMenu';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
@@ -38,27 +39,10 @@ export default function CheckoutPage() {
         }
 
         setClientSecret(clientSecret);
-        setShowPayment(true);
-      } else {
-        // Mercado Pago: Create preference and redirect
-        const response = await fetch('/api/mercadopago/create-preference', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email, newsletter }),
-        });
-
-        const { init_point, error } = await response.json();
-
-        if (error) {
-          alert('Error: ' + error);
-          return;
-        }
-
-        // Redirect to Mercado Pago checkout
-        window.location.href = init_point;
       }
+
+      // Show payment form for both methods
+      setShowPayment(true);
     } catch (err) {
       alert('An error occurred. Please try again.');
     }
@@ -98,15 +82,15 @@ export default function CheckoutPage() {
               <div className="cart-pricing">
                 <div className="price-line">
                   <span>Original Price:</span>
-                  <span>{paymentMethod === 'mercadopago' ? 'R$115' : '$20'}</span>
+                  <span>$20.00</span>
                 </div>
                 <div className="price-line discount">
                   <span>Launch Discount:</span>
-                  <span>{paymentMethod === 'mercadopago' ? '-R$45' : '-$8'}</span>
+                  <span>-$8.00</span>
                 </div>
                 <div className="price-line total">
                   <span>Total:</span>
-                  <span>{paymentMethod === 'mercadopago' ? 'R$70.00' : '$12.00'}</span>
+                  <span>$12.00 USD</span>
                 </div>
               </div>
             </div>
@@ -126,7 +110,7 @@ export default function CheckoutPage() {
                         checked={paymentMethod === 'mercadopago'}
                         onChange={() => setPaymentMethod('mercadopago')}
                       />
-                      <span>🇧🇷 Mercado Pago (PIX, Cartão, Boleto)</span>
+                      <span>🇧🇷 Mercado Pago (Cartão)</span>
                     </label>
                     <label className="payment-method-option">
                       <input
@@ -136,7 +120,7 @@ export default function CheckoutPage() {
                         checked={paymentMethod === 'stripe'}
                         onChange={() => setPaymentMethod('stripe')}
                       />
-                      <span>🌎 International (Card, PayPal)</span>
+                      <span>🌎 International (Card, Apple Pay, Google Pay)</span>
                     </label>
                   </div>
                 </div>
@@ -174,12 +158,16 @@ export default function CheckoutPage() {
                 </button>
               </div>
             ) : (
-              /* Payment Form - Only for Stripe */
+              /* Payment Form */
               <div className="checkout-form">
-                {clientSecret && (
-                  <Elements stripe={stripePromise} options={{ clientSecret }}>
-                    <PaymentForm />
-                  </Elements>
+                {paymentMethod === 'stripe' ? (
+                  clientSecret && (
+                    <Elements stripe={stripePromise} options={{ clientSecret }}>
+                      <PaymentForm />
+                    </Elements>
+                  )
+                ) : (
+                  <MercadoPagoCheckout email={email} newsletter={newsletter} />
                 )}
               </div>
             )}

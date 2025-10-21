@@ -1810,3 +1810,23 @@ a, button, .menu-item, .animated-button {
   font-size: 20px;
   z-index: 9999;
 }
+
+
+/* Hide Mercado Pago installments text */
+.mercadopago-payment-brick [class*='installment'],
+.mercadopago-payment-brick [class*='parcelamento'] {
+  display: none !important;
+}
+
+/* Remove payment method selector outlines */
+.payment-method-option {
+  border: none !important;
+  outline: none !important;
+}
+
+/* Hide Boleto text in payment methods */
+.payment-methods span:has-text("Boleto"),
+.payment-method-selector *:contains("Boleto"),
+.payment-method-selector *:contains("boleto") {
+  display: none !important;
+}

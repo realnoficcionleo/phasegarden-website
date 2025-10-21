@@ -26,8 +26,8 @@ export async function POST(req: NextRequest) {
           title: 'PhaseGarden',
           description: 'VST3 • AU • AAX • macOS 10.13+ • Windows 10+',
           quantity: 1,
-          unit_price: 70.00,
-          currency_id: 'BRL',
+          unit_price: 12.00,
+          currency_id: 'USD',
         },
       ],
       payer: {
@@ -48,8 +48,8 @@ export async function POST(req: NextRequest) {
     const response = await preference.create({ body: preferenceData });
 
     return NextResponse.json({
-      init_point: response.init_point,
       preference_id: response.id,
+      init_point: response.init_point,
     });
   } catch (error) {
     console.error('Mercado Pago error:', error);
