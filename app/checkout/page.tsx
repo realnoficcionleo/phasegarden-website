@@ -70,7 +70,7 @@ export default function CheckoutPage() {
                 <span className="item-quantity">x1</span>
               </div>
               <div className="cart-format">
-                VST3 • AU • AAX • macOS 10.13+ • Windows 10+
+                VST3 • AU • macOS 10.13+
               </div>
 
               <div className="cart-pricing">
