@@ -1,11 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import PaymentForm from '@/components/PaymentForm';
-import MercadoPagoCheckout from '@/components/MercadoPagoCheckout';
 import MobileMenu from '@/components/MobileMenu';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
@@ -13,7 +12,6 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
 export default function CheckoutPage() {
   const [email, setEmail] = useState('');
   const [newsletter, setNewsletter] = useState(false);
-  const [paymentMethod, setPaymentMethod] = useState<'stripe' | 'mercadopago'>('mercadopago');
   const [clientSecret, setClientSecret] = useState<string | null>(null);
   const [showPayment, setShowPayment] = useState(false);
 
@@ -21,27 +19,23 @@ export default function CheckoutPage() {
     if (!email) return;
 
     try {
-      if (paymentMethod === 'stripe') {
-        // Create Stripe PaymentIntent
-        const response = await fetch('/api/create-payment-intent', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email }),
-        });
+      // Create Stripe PaymentIntent
+      const response = await fetch('/api/create-payment-intent', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
 
-        const { clientSecret, error } = await response.json();
+      const { clientSecret, error } = await response.json();
 
-        if (error) {
-          alert('Error: ' + error);
-          return;
-        }
-
-        setClientSecret(clientSecret);
+      if (error) {
+        alert('Error: ' + error);
+        return;
       }
 
-      // Show payment form for both methods
+      setClientSecret(clientSecret);
       setShowPayment(true);
     } catch (err) {
       alert('An error occurred. Please try again.');
@@ -98,33 +92,6 @@ export default function CheckoutPage() {
             {!showPayment ? (
               /* Email Input */
               <div className="checkout-form">
-                {/* Payment Method Selector */}
-                <div className="payment-method-selector">
-                  <label className="payment-method-label">Payment Method:</label>
-                  <div className="payment-methods">
-                    <label className="payment-method-option">
-                      <input
-                        type="radio"
-                        name="paymentMethod"
-                        value="mercadopago"
-                        checked={paymentMethod === 'mercadopago'}
-                        onChange={() => setPaymentMethod('mercadopago')}
-                      />
-                      <span>🇧🇷 Mercado Pago (Cartão)</span>
-                    </label>
-                    <label className="payment-method-option">
-                      <input
-                        type="radio"
-                        name="paymentMethod"
-                        value="stripe"
-                        checked={paymentMethod === 'stripe'}
-                        onChange={() => setPaymentMethod('stripe')}
-                      />
-                      <span>🌎 International (Card, Apple Pay, Google Pay)</span>
-                    </label>
-                  </div>
-                </div>
-
                 <label htmlFor="email" className="email-label">
                   Email
                   <span className="email-note">Double-check for serial number delivery</span>
@@ -160,14 +127,10 @@ export default function CheckoutPage() {
             ) : (
               /* Payment Form */
               <div className="checkout-form">
-                {paymentMethod === 'stripe' ? (
-                  clientSecret && (
-                    <Elements stripe={stripePromise} options={{ clientSecret }}>
-                      <PaymentForm />
-                    </Elements>
-                  )
-                ) : (
-                  <MercadoPagoCheckout email={email} newsletter={newsletter} />
+                {clientSecret && (
+                  <Elements stripe={stripePromise} options={{ clientSecret }}>
+                    <PaymentForm />
+                  </Elements>
                 )}
               </div>
             )}
