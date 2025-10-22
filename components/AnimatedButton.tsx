@@ -31,7 +31,6 @@ export default function AnimatedButton() {
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
       onClick={handleClick}
-      style={{ cursor: COMING_SOON_MODE ? 'default' : 'pointer' }}
     >
       <img
         src={`/button${isHovering ? 3 : 1}.svg`}
