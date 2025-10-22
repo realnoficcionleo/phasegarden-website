@@ -3,9 +3,7 @@ import Stripe from 'stripe';
 import { Resend } from 'resend';
 import { generateSerial } from '@/lib/serialGenerator';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2024-11-20.acacia',
-});
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 const resend = new Resend(process.env.RESEND_API_KEY!);
 
