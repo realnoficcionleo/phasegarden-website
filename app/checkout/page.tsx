@@ -84,7 +84,7 @@ export default function CheckoutPage() {
                 </div>
                 <div className="price-line total">
                   <span>Total:</span>
-                  <span>$12.00 USD</span>
+                  <span>$12.00</span>
                 </div>
               </div>
             </div>
