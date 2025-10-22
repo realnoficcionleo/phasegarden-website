@@ -167,7 +167,7 @@ function SuccessContent() {
             )}
 
             <div className="download-links">
-              <a href="mailto:support@rnfaudio.space">Support</a>
+              <a href="https://ig.me/m/rnfaudio" target="_blank" rel="noopener noreferrer">Support</a>
               <span>•</span>
               <a href="https://instagram.com/rnfaudio" target="_blank" rel="noopener noreferrer">@rnfaudio</a>
             </div>

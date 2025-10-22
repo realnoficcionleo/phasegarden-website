@@ -87,17 +87,18 @@ export default function DownloadPage() {
             <div className="download-section-secondary">
               <p className="download-subtitle">Or try the 10-day demo</p>
               <div className="download-buttons">
-                <button
+                <a
+                  href="/PhaseGarden_v1.0_Installer.pkg"
+                  download
                   className="download-btn"
-                  onClick={handleDemoClick}
-                  style={{ cursor: COMING_SOON_MODE ? 'default' : 'pointer' }}
+                  style={{ textDecoration: 'none', display: 'inline-block' }}
                 >
                   Mac
-                </button>
+                </a>
                 <button
                   className="download-btn"
-                  onClick={handleDemoClick}
-                  style={{ cursor: COMING_SOON_MODE ? 'default' : 'pointer', opacity: 0.5 }}
+                  style={{ opacity: 0.5, cursor: 'not-allowed' }}
+                  disabled
                 >
                   Windows (soon)
                 </button>
@@ -106,9 +107,7 @@ export default function DownloadPage() {
 
             {/* Footer links */}
             <div className="download-links">
-              <a href="#">User Manual</a>
-              <span>•</span>
-              <a href="#">Support</a>
+              <a href="https://ig.me/m/rnfaudio" target="_blank" rel="noopener noreferrer">Support</a>
             </div>
           </div>
         </main>
