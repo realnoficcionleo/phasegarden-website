@@ -73,7 +73,7 @@ function SuccessContent() {
 
         <main className="download-main">
           <div className="download-container">
-            <h1 className="download-title">// Thank You! 🎉</h1>
+            <h1 className="download-title">// Thank You!</h1>
 
             <p className="download-info-line">
               Your purchase was successful! Check your email for download instructions and your serial number.
