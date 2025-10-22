@@ -73,7 +73,6 @@ export default function DownloadPage() {
                 onMouseEnter={() => setIsHovering(true)}
                 onMouseLeave={() => setIsHovering(false)}
                 onClick={handlePurchaseClick}
-                style={{ cursor: COMING_SOON_MODE ? 'default' : 'pointer' }}
               >
                 <img
                   src={isHovering ? '/purchase2.svg' : '/purchase1.svg'}
