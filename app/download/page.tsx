@@ -26,11 +26,32 @@ export default function DownloadPage() {
     }
   };
 
-  const handleDemoClick = (e: React.MouseEvent) => {
+  const handleDemoClick = async () => {
     if (COMING_SOON_MODE) {
-      e.preventDefault();
-      // Disabled until launch
+      return;
     }
+
+    // Track the download
+    try {
+      await fetch('/api/track-download', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'demo',
+          source: 'download_page'
+        })
+      });
+    } catch (error) {
+      console.error('Failed to track download:', error);
+    }
+
+    // Trigger download
+    const link = document.createElement('a');
+    link.href = '/PhaseGarden_v1.0_Installer.pkg';
+    link.download = 'PhaseGarden_v1.0_Installer.pkg';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -86,14 +107,12 @@ export default function DownloadPage() {
             <div className="download-section-secondary">
               <p className="download-subtitle">Or try the 10-day demo</p>
               <div className="download-buttons">
-                <a
-                  href="/PhaseGarden_v1.0_Installer.pkg"
-                  download
+                <button
                   className="download-btn"
-                  style={{ textDecoration: 'none', display: 'inline-block' }}
+                  onClick={handleDemoClick}
                 >
                   Mac
-                </a>
+                </button>
                 <button
                   className="download-btn"
                   style={{ opacity: 0.5, cursor: 'not-allowed' }}

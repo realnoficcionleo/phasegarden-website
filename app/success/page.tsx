@@ -14,6 +14,30 @@ function SuccessContent() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const handlePurchaseDownload = async () => {
+    // Track the download
+    try {
+      await fetch('/api/track-download', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'purchase',
+          source: 'success_page'
+        })
+      });
+    } catch (error) {
+      console.error('Failed to track download:', error);
+    }
+
+    // Trigger download
+    const link = document.createElement('a');
+    link.href = '/PhaseGarden_v1.0_Installer.pkg';
+    link.download = 'PhaseGarden_v1.0_Installer.pkg';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   useEffect(() => {
     const paymentIntentId = searchParams.get('payment_intent') || searchParams.get('payment_intent_client_secret')?.split('_secret_')[0];
 
@@ -128,14 +152,12 @@ function SuccessContent() {
                 <div className="download-section-secondary">
                   <p className="download-subtitle">Download PhaseGarden</p>
                   <div className="download-buttons">
-                    <a
-                      href="/PhaseGarden_v1.0_Installer.pkg"
-                      download
+                    <button
                       className="download-btn"
-                      style={{ textDecoration: 'none', display: 'inline-block' }}
+                      onClick={handlePurchaseDownload}
                     >
                       Mac (55MB)
-                    </a>
+                    </button>
                     <button
                       className="download-btn"
                       style={{ opacity: 0.5, cursor: 'not-allowed' }}
